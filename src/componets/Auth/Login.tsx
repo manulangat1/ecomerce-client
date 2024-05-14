@@ -32,7 +32,7 @@ function Login() {
       console.log("is authenticated");
       getProfile();
       console.log("something done here");
-      return navigate("/products");
+      return navigate("/");
     } else {
       console.log("do nothing here");
     }
@@ -89,7 +89,6 @@ function Login() {
                 placeholder={element.placeholder}
                 type={element.type}
                 formik={formik}
-                // defaultValue={values[name]}
                 label={element.label}
                 required={element.required}
               />
