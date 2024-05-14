@@ -197,3 +197,25 @@ ul{
         }
     }
 }
+.header-links { 
+    text-decoration: none; 
+    padding: 2rem; 
+    margin-right: 1rem;
+    cursor: pointer;
+
+
+}
+.header-links:hover{
+    color: #ff7b39;
+}
+
+.addProduct{ 
+    padding: 1.7rem;
+}
+.addProductForm{ 
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem;
+
+}

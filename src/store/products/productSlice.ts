@@ -3,6 +3,7 @@ import productAPIService from "./action";
 import { reset } from "../auth/authSlice";
 const BASE_URL = import.meta.env.VITE_REACT_APP_BASE_URL;
 const PRODUCTS_URL = BASE_URL + "/api/v1/products/";
+const ORDERS_URL = BASE_URL + "/api/v1/orders/";
 import axios from "axios";
 const token = localStorage.getItem("peleza-token");
 const config = {
@@ -52,6 +53,50 @@ export const getProductDetail = createAsyncThunk(
   }
 );
 
+export const addProduct = createAsyncThunk(
+  "product/add",
+  async (data: any, thunkAPI) => {
+    try {
+      const res = await axios.post(`${PRODUCTS_URL}create/`, data, config);
+      console.log(res);
+      return res;
+    } catch (error) {
+      return error;
+    }
+  }
+);
+
+export const addToCart = createAsyncThunk(
+  "orders/add",
+  async (id: string, thunkAPI) => {
+    try {
+      const res = await axios.post(
+        `${ORDERS_URL}add-to-cart/${id}/`,
+        null,
+        config
+      );
+      return res;
+    } catch (error) {
+      return error;
+    }
+  }
+);
+
+export const removeFromCart = createAsyncThunk(
+  "orders/remove",
+  async (id: string, thunkAPI) => {
+    try {
+      const res = await axios.patch(
+        `${ORDERS_URL}remove-from-cart/${id}/`,
+        config
+      );
+      return res;
+    } catch (error) {
+      return error;
+    }
+  }
+);
+
 const productSlice = createSlice({
   name: "products",
   initialState,
@@ -79,6 +124,39 @@ const productSlice = createSlice({
         console.log(action);
       })
       .addCase(getProductDetail.rejected, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(addProduct.pending, (state) => {
+        state.isLoading = true;
+        state.products = [];
+      })
+      .addCase(addProduct.fulfilled, (state) => {
+        console.log(state);
+        state.isLoading = false;
+      })
+      .addCase(addProduct.rejected, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(addToCart.pending, (state) => {
+        state.isLoading = true;
+        state.products = [];
+      })
+      .addCase(addToCart.fulfilled, (state) => {
+        console.log(state);
+        state.isLoading = false;
+      })
+      .addCase(addToCart.rejected, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(removeFromCart.pending, (state) => {
+        state.isLoading = true;
+        state.products = [];
+      })
+      .addCase(removeFromCart.fulfilled, (state) => {
+        console.log(state);
+        state.isLoading = false;
+      })
+      .addCase(removeFromCart.rejected, (state) => {
         state.isLoading = false;
       });
   },

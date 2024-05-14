@@ -4,12 +4,14 @@ import cartSlice from "./cartSlice";
 import { useDispatch } from "react-redux";
 import authSlice from "./auth/authSlice";
 import productSlice from "./products/productSlice";
+import order from "./order/order";
 
 const store = configureStore({
   reducer: {
     cart: cartSlice,
     auth: authSlice,
     products: productSlice,
+    orders: order,
   },
 });
 // Infer the `RootState` and `AppDispatch` types from the store itself

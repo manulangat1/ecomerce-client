@@ -6,11 +6,23 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-function ReusableCard({ name, photo, description, slug, id, onClick }) {
+function ReusableCard({
+  name,
+  photo,
+  description,
+  slug,
+  id,
+  onClick,
+  addToCart,
+}) {
   console.log(photo);
+  const [numberOfItems, setNumberOfItems] = useState(1);
+  const onChange = (e) => {
+    setNumberOfItems(e.target.value);
+  };
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -30,8 +42,13 @@ function ReusableCard({ name, photo, description, slug, id, onClick }) {
         </Link>
       </CardContent>
       <CardActions>
-        <button className="primary-btn">See More</button>
-        <Button size="small">Learn More</Button>
+        <input type="number" defaultValue={1} onChange={onChange} />
+        <button
+          onClick={() => addToCart(id, numberOfItems)}
+          className="primary-btn"
+        >
+          Add to cart
+        </button>
       </CardActions>
     </Card>
   );
