@@ -20,7 +20,7 @@ const Products = () => {
     (state: RootState) => state.products
   );
 
-  const addToCarts = async (id: string, numberOfItems) => {
+  const addToCarts = async (id: string, numberOfItems: number) => {
     console.log(id, numberOfItems);
     await dispatch(addToCart(id));
     window.location.reload();
