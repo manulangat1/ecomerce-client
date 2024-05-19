@@ -5,6 +5,7 @@ import { Button } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store/store";
 import { addProduct } from "../../store/products/productSlice";
+import { useNavigate } from "react-router-dom";
 
 const elements = [
   {
@@ -37,22 +38,35 @@ const elements = [
     textLink: "",
     required: true,
   },
+  {
+    name: "quantity",
+    label: "Quantity",
+    type: "number",
+    placeholder: "",
+    beforeLink: "",
+    link: "#",
+    textLink: "",
+    required: true,
+  },
 ];
 
 function AddProduct() {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
       name: "",
       description: "",
       price: "",
+      quantity: "",
     },
     validationSchema: null,
     onSubmit: async (values) => {
       console.log(values);
       dispatch(addProduct(values));
-      window.location.reload();
+      //   window.location.reload();
+      return navigate("/");
     },
   });
   return (
@@ -66,19 +80,34 @@ function AddProduct() {
       </h1>
 
       <form className="addProductForm" onSubmit={formik.handleSubmit}>
-        {elements.map((element, index) => (
-          <ReusableInput
-            key={index}
-            name={element.name}
-            placeholder={element.placeholder}
-            type={element.type}
-            formik={formik}
-            // defaultValue={values[name]}
-            label={element.label}
-            required={element.required}
-          />
-        ))}
-        <Button type="submit" className="primary-btn">
+        <div className="grid">
+          {elements.map((element, index) => (
+            <ReusableInput
+              key={index}
+              name={element.name}
+              placeholder={element.placeholder}
+              type={element.type}
+              formik={formik}
+              // defaultValue={values[name]}
+              label={element.label}
+              required={element.required}
+            />
+          ))}
+        </div>
+
+        <Button
+          type="submit"
+          className="primary-btn"
+          //   style={{
+          //     background: "#7fffd4",
+
+          //     width: "100%",
+          //     // background: "80%",
+          //     marginLeft: "auto",
+          //     marginRight: "auto",
+          //     marginTop: "2rem",
+          //   }}
+        >
           {" "}
           ADD
         </Button>

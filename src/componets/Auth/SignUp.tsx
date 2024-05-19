@@ -77,17 +77,7 @@ const SignUp = () => {
       textLink: "",
       required: true,
     },
-    {
-      id: 5,
-      name: "email",
-      label: "Email",
-      type: "email",
-      placeholder: "",
-      beforeLink: "",
-      link: "#",
-      textLink: "",
-      required: true,
-    },
+
     {
       id: 6,
       name: "password",
@@ -120,16 +110,19 @@ const SignUp = () => {
             <h1>Sign up to the best online shop</h1>
           </div>
           <form onSubmit={formik.handleSubmit} className="utility">
-            {registerElements.map((element) => (
-              <ReusableInput
-                name={element.name}
-                placeholder={element.placeholder}
-                type={element.type}
-                formik={formik}
-                label={element.label}
-                required={element.required}
-              />
-            ))}
+            <div className="grid">
+              {registerElements.map((element) => (
+                <ReusableInput
+                  name={element.name}
+                  placeholder={element.placeholder}
+                  type={element.type}
+                  formik={formik}
+                  label={element.label}
+                  required={element.required}
+                />
+              ))}
+            </div>
+
             <button className="primary-btn"> Sign Up</button>
 
             <div className="links"></div>

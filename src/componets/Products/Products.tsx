@@ -6,38 +6,8 @@ import { addToCart, getProducts } from "../../store/products/productSlice";
 import { AppDispatch, RootState } from "../../store/store";
 import { Link } from "react-router-dom";
 import ReusableCard from "../Reusable/ReusableCard";
-const items = [
-  {
-    id: 1,
-  },
-  {
-    id: 2,
-  },
-  {
-    id: 3,
-  },
-  {
-    id: 4,
-  },
-  {
-    id: 5,
-  },
-  {
-    id: 6,
-  },
-  {
-    id: 7,
-  },
-  {
-    id: 8,
-  },
-  {
-    id: 9,
-  },
-  {
-    id: 10,
-  },
-];
+import SkeletonHolder from "../Reusable/SkeletonHolder";
+
 const Products = () => {
   useEffect(() => {
     console.log("here here now now");
@@ -50,39 +20,27 @@ const Products = () => {
     (state: RootState) => state.products
   );
 
-  const addToCarts = (id: string, numberOfItems) => {
+  const addToCarts = async (id: string, numberOfItems) => {
     console.log(id, numberOfItems);
-    dispatch(addToCart(id));
+    await dispatch(addToCart(id));
+    window.location.reload();
   };
 
   return (
     <section id="products">
-      {isLoading && (
-        <Grid container spacing={2}>
-          {items.map((item) => (
-            <Grid key={item.id} xs={12} sm={6} md={4} lg={3} xl={3}>
-              <Skeleton
-                animation="wave"
-                variant="rectangular"
-                width={210}
-                height={118}
-              />
-            </Grid>
-          ))}
-        </Grid>
-      )}
+      {isLoading && <SkeletonHolder />}
 
       {products && (
         <Grid container spacing={2}>
           {products.map((product: any) => (
-            <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
+            <Grid key={product.id} xs={12} sm={6} md={4} lg={3} xl={3}>
               <ReusableCard
                 name={product.name}
                 description={product.description}
                 photo={product.photo}
-                key={product.id}
                 slug={product.slug}
                 id={product.id}
+                quantity={product.quantity}
                 onClick="h"
                 addToCart={addToCarts}
               />

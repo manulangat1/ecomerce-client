@@ -5,7 +5,6 @@ import AddProduct from "../Products/AddProduct";
 const Dashboard = () => {
   return (
     <section>
-      <AddProduct />
       <Products />
     </section>
   );

@@ -17,6 +17,7 @@ function ReusableCard({
   id,
   onClick,
   addToCart,
+  quantity,
 }) {
   console.log(photo);
   const [numberOfItems, setNumberOfItems] = useState(1);
@@ -37,7 +38,7 @@ function ReusableCard({
             {name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {description}
+            {description} - and number - {quantity}
           </Typography>
         </Link>
       </CardContent>

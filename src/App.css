@@ -218,4 +218,32 @@ ul{
     margin-right: auto;
     padding: 2rem;
 
+    .primary-btn{ 
+        width: 100%;
+        background: #7fffd4; 
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 2rem;
+
+        
+    }
+
+}
+
+.grid { 
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+}
+
+.orders{ 
+    padding: 2rem;
+
+    text-align: center;
+
+}
+.orders-grid { 
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+    grid-gap: 1rem;
 }

@@ -88,6 +88,7 @@ export const removeFromCart = createAsyncThunk(
     try {
       const res = await axios.patch(
         `${ORDERS_URL}remove-from-cart/${id}/`,
+        null,
         config
       );
       return res;
@@ -107,6 +108,7 @@ const productSlice = createSlice({
     builder
       .addCase(getProducts.pending, (state) => {
         state.isLoading = true;
+        state.products = [];
       })
       .addCase(getProducts.fulfilled, (state, action) => {
         state.products = action.payload.results;

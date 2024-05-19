@@ -39,7 +39,7 @@ const orderSlice = createSlice({
         state.orders = [];
       })
       .addCase(getAllOrders.fulfilled, (state, action) => {
-        state.isLoading = true;
+        state.isLoading = false;
         state.orders = action.payload;
         console.log(action.payload);
       })

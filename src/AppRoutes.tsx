@@ -9,6 +9,7 @@ import PrivateRoute from "./PrivateRoute";
 import Header from "./componets/AppBar/Header";
 import NotFound from "./componets/AppBar/NotFound";
 import Order from "./componets/Order/Order";
+import AddProduct from "./componets/Products/AddProduct";
 const AppRoutes = () => {
   return (
     <section>
@@ -29,6 +30,9 @@ const AppRoutes = () => {
 
         <Route element={<PrivateRoute />}>
           <Route path="/orders" element={<Order />} />
+        </Route>
+        <Route element={<PrivateRoute />}>
+          <Route path="/add-products" element={<AddProduct />}></Route>
         </Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>

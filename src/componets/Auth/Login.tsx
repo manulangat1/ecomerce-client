@@ -26,15 +26,11 @@ function Login() {
     (state: RootState) => state.auth.isAuthenticated
   );
 
-  console.log("is auth", isAuthenticated);
   useEffect(() => {
     if (isAuthenticated) {
-      console.log("is authenticated");
       getProfile();
-      console.log("something done here");
+
       return navigate("/");
-    } else {
-      console.log("do nothing here");
     }
   }, [isAuthenticated]);
 

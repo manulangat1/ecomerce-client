@@ -22,6 +22,10 @@ const privateRoutes = [
     link: "/orders",
     name: "Order",
   },
+  {
+    link: "/add-products",
+    name: "Add Product",
+  },
 ];
 
 function Header() {
